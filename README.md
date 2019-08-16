@@ -1,8 +1,6 @@
-# flutter_mei_ri 
-
-`<a href="https://github.com/lin-xin/vue-manage-system/blob/master/LICENSE">
+# flutter_mei_ri <a href="https://github.com/lin-xin/vue-manage-system/blob/master/LICENSE">
   <img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
-</a>`
+</a>
 
 使用flutter实现每日优鲜app的移动端UI
 
