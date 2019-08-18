@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../components/search_text_widget.dart';
-import '../components/category_scroll.dart';
+import '../widget/search_text_widget.dart';
+import '../widget/category_scroll.dart';
 
 class CategoryPage extends StatelessWidget {
 

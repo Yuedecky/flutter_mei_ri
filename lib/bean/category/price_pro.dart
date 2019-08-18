@@ -1,4 +1,4 @@
-import 'price_unit.dart';
+import 'package:flutter_mei_ri/bean/category/price_unit.dart';
 
 class PricePro {
 
