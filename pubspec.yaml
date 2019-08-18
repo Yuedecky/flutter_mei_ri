@@ -17,6 +17,7 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  permisson_handler: 3.2.2
   sprintf: 4.0.2
   package_info: 0.4.0+6
   localstorage: ^2.0.0

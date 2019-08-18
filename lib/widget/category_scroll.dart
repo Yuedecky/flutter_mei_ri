@@ -4,7 +4,6 @@ import '../http/dio_request.dart' as request;
 import '../config/http_config.dart' as config;
 import '../config/storage_config.dart';
 import '../utils/system_info.dart';
-import 'dart:async';
 
 class CategoryItemScroll extends StatefulWidget {
   CategoryItemScroll({Key key}) : super(key: key);
