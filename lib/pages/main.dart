@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart';
+import 'package:flutter_mei_ri/pages/index/home_page.dart';
 import 'cart_page.dart';
 import 'category_page.dart';
 import 'personal_page.dart';

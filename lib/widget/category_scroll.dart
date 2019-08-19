@@ -17,13 +17,18 @@ class CategoryItemScroll extends StatefulWidget {
 class CategoryItemScrollState extends State<CategoryItemScroll> {
   List<CategoryItem> items;
   CategoryItem checked;
+  String addressCode;
 
   @override
-  void initState() async{
+  void initState() {
     super.initState();
-
     items = new List();
-    final String addressCode = await SystemInfo.getItem(StorageConfig.AddressCodeKey);
+    SystemInfo.getItem(StorageConfig.AddressCodeKey).then((val){
+      setState(() {
+        print('addressCode:${addressCode}');
+        addressCode = val;
+      });
+    });
     final body = {
       "common": {"addressCode": addressCode},
       "param": {}
