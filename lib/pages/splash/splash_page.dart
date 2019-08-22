@@ -21,7 +21,6 @@ class SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     checkPermission();
-    countDown();
   }
 
   /// 检查是否设置访问权限
@@ -29,26 +28,26 @@ class SplashPageState extends State<SplashPage> {
     List<PermissionItem> permissions = new List();
     PermissionStatus locationStatus = await PermissionHandler()
         .checkPermissionStatus(PermissionGroup.location);
-    if (locationStatus.value == PermissionStatus.denied.value || locationStatus.value == PermissionStatus.unknown.value) {
+    if (locationStatus.value == PermissionStatus.denied.value ||
+        locationStatus.value == PermissionStatus.unknown.value) {
       permissions.add(PermissionItem(PermissionItemType.Position,
           title: "定位信息", subtitle: "用于获取商品在当前位置可购买库存"));
     }
     PermissionStatus deviceStatus = await PermissionHandler()
         .checkPermissionStatus(PermissionGroup.storage);
-    if (deviceStatus.value == PermissionStatus.denied.value || locationStatus.value == PermissionStatus.unknown.value) {
+    if (deviceStatus.value == PermissionStatus.denied.value ||
+        locationStatus.value == PermissionStatus.unknown.value) {
       permissions.add(PermissionItem(PermissionItemType.Storage,
           title: '存储空间', subtitle: "用于缓存商品图片等信息"));
     }
 
     if (permissions.length > 0) {
-      await showDialog(context: context,builder:(context)=> PermissionDialog(items:permissions));
+      await showDialog(
+          context: context,
+          builder: (context) => PermissionDialog(items: permissions));
+      var duration = Duration(seconds: 3);
+      Future.delayed(duration, goToHomePage);
     }
-  }
-
-  void countDown() {
-    //设置倒计时三秒后执行跳转方法
-    var duration = Duration(seconds: 3);
-    new Future.delayed(duration, goToHomePage);
   }
 
   void goToHomePage() {

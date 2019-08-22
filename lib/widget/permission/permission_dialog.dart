@@ -51,8 +51,9 @@ class _PermissionDialogState extends State<PermissionDialog> {
       actions: <Widget>[
         FlatButton(
           child: Text('下一步'),
-          onPressed: (){
+          onPressed: () {
             SystemUtils.setCacheItem("model", SystemUtils.getDeviceInfo());
+            Navigator.of(context).pop();
           },
         )
       ],
