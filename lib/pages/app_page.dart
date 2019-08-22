@@ -6,27 +6,27 @@ import 'personal_page.dart';
 import 'eat_page.dart';
 import 'package:flutter/services.dart';
 
-class MainPage extends StatelessWidget {
+class AppPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-        debugShowCheckedModeBanner: false, home: new MainPageWidget());
+        debugShowCheckedModeBanner: false, home: AppPageWidget());
   }
 }
 
-class MainPageWidget extends StatefulWidget {
+class AppPageWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MainPageState();
+    return AppPageState();
   }
 }
 
-class MainPageState extends State<MainPageWidget>
+class AppPageState extends State<AppPageWidget>
     with SingleTickerProviderStateMixin {
   var _pageController;
   int _tabIndex = 0;
-  var tabImages;
-  var appBarTitles = ['首页', '分类', '吃什么', '购物车', '我的'];
+  var _tabImages;
+  var _appBarTitles = ['首页', '分类', '吃什么', '购物车', '我的'];
 
   /*
    * 存放三个页面，跟fragmentList一样
@@ -36,25 +36,24 @@ class MainPageState extends State<MainPageWidget>
   /*
    * 根据选择获得对应的normal或是press的icon
    */
-  Image getTabIcon(int curIndex) {
+  Image _getTabIcon(int curIndex) {
     if (curIndex == _tabIndex) {
-      return tabImages[curIndex][1];
+      return _tabImages[curIndex][1];
     }
-    return tabImages[curIndex][0];
+    return _tabImages[curIndex][0];
   }
 
   /*
    * 获取bottomTab的颜色和文字
    */
-  Text getTabTitle(int curIndex) {
+  Text _getTabTitle(int curIndex) {
     if (curIndex == _tabIndex) {
-      print(_tabIndex);
-      return Text(appBarTitles[curIndex],
+      return Text(_appBarTitles[curIndex],
           //color: const Color(0xd4237a))
           style: TextStyle(
               fontSize: 14.0, color: Color.fromRGBO(212, 35, 122, 1.0)));
     } else {
-      return Text(appBarTitles[curIndex],
+      return Text(_appBarTitles[curIndex],
           style: TextStyle(
               fontSize: 14.0, color: Color.fromRGBO(138, 138, 138, 1.0)));
     }
@@ -63,7 +62,7 @@ class MainPageState extends State<MainPageWidget>
   /*
    * 根据image路径获取图片
    */
-  Image getTabImage(path) {
+  Image _getTabImage(path) {
     return Image.asset(path, width: 24.0, height: 24.0);
   }
 
@@ -72,26 +71,26 @@ class MainPageState extends State<MainPageWidget>
     /*
      * 初始化选中和未选中的icon
      */
-    tabImages = [
+    _tabImages = [
       [
-        getTabImage('images/index_unchecked.png'),
-        getTabImage('images/index_checked.png')
+        _getTabImage('images/index_unchecked.png'),
+        _getTabImage('images/index_checked.png')
       ],
       [
-        getTabImage('images/category_unchecked.png'),
-        getTabImage('images/category_checked.png')
+        _getTabImage('images/category_unchecked.png'),
+        _getTabImage('images/category_checked.png')
       ],
       [
-        getTabImage('images/eat_unchecked.png'),
-        getTabImage('images/eat_checked.png')
+        _getTabImage('images/eat_unchecked.png'),
+        _getTabImage('images/eat_checked.png')
       ],
       [
-        getTabImage('images/cart_unchecked.png'),
-        getTabImage('images/cart_checked.png')
+        _getTabImage('images/cart_unchecked.png'),
+        _getTabImage('images/cart_checked.png')
       ],
       [
-        getTabImage('images/me_unchecked.png'),
-        getTabImage('images/me_checked.png')
+        _getTabImage('images/me_unchecked.png'),
+        _getTabImage('images/me_checked.png')
       ]
     ];
     /*
@@ -162,25 +161,21 @@ class MainPageState extends State<MainPageWidget>
             },
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                  icon: getTabIcon(0), title: getTabTitle(0)),
+                  icon: _getTabIcon(0), title: _getTabTitle(0)),
               BottomNavigationBarItem(
-                  icon: getTabIcon(1), title: getTabTitle(1)),
+                  icon: _getTabIcon(1), title: _getTabTitle(1)),
               BottomNavigationBarItem(
-                  icon: getTabIcon(2), title: getTabTitle(2)),
+                  icon: _getTabIcon(2), title: _getTabTitle(2)),
               BottomNavigationBarItem(
-                icon: getTabIcon(3),
-                title: getTabTitle(3),
+                icon: _getTabIcon(3), title: _getTabTitle(3),
               ),
               BottomNavigationBarItem(
-                  icon: getTabIcon(4), title: getTabTitle(4))
+                  icon: _getTabIcon(4), title: _getTabTitle(4))
             ],
           ),
           body: PageView(
             controller: _pageController,
             children: _pageList,
-            onPageChanged: (index) {
-              _tabIndex = index;
-            },
           ),
         ),
       ),

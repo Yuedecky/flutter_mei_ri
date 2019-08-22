@@ -15,11 +15,11 @@ class LeadingRow extends StatelessWidget {
   factory LeadingRow.fromItem(PermissionItemType type,String title,String subtitle){
     switch(type){
       case PermissionItemType.Device:
-        return LeadingRow(image:"images/device.png",title:title,subtitle: subtitle);
+        return LeadingRow(image:"images/permission/device.png",title:title,subtitle: subtitle);
       case PermissionItemType.Position:
-        return LeadingRow(image:"images/position.png",title:title,subtitle:subtitle);
+        return LeadingRow(image:"images/permission/position.png",title:title,subtitle:subtitle);
       case PermissionItemType.Storage:
-        return LeadingRow(image:"images/storage.png",title:title,subtitle:subtitle);
+        return LeadingRow(image:"images/permission/storage.png",title:title,subtitle:subtitle);
     }
     return null;
   }

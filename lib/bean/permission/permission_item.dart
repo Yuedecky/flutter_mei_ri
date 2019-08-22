@@ -6,4 +6,9 @@ class PermissionItem {
   final PermissionItemType type;
 
   PermissionItem(this.type,{this.title, this.subtitle,});
+
+  @override
+  String toString() {
+    return "title:${this.title},image:${this.type},subtitle:${this.subtitle}";
+  }
 }

@@ -3,7 +3,7 @@ import 'package:flutter_mei_ri/bean/category/category_item.dart';
 import '../http/dio_request.dart' as request;
 import '../config/http_config.dart' as config;
 import '../config/storage_config.dart';
-import '../utils/system_info.dart';
+import '../utils/system.dart';
 
 class CategoryItemScroll extends StatefulWidget {
   CategoryItemScroll({Key key}) : super(key: key);
@@ -23,9 +23,8 @@ class CategoryItemScrollState extends State<CategoryItemScroll> {
   void initState() {
     super.initState();
     items = new List();
-    SystemInfo.getItem(StorageConfig.AddressCodeKey).then((val){
+    SystemUtils.getCacheItem(StorageConfig.AddressCodeKey).then((val){
       setState(() {
-        print('addressCode:${addressCode}');
         addressCode = val;
       });
     });

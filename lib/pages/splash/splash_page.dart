@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../main.dart';
+import '../app_page.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../../bean/permission/permission_item.dart';
 import '../../widget/permission/permission_dialog.dart';
@@ -29,19 +29,19 @@ class SplashPageState extends State<SplashPage> {
     List<PermissionItem> permissions = new List();
     PermissionStatus locationStatus = await PermissionHandler()
         .checkPermissionStatus(PermissionGroup.location);
-    if (locationStatus.value == PermissionStatus.denied.value) {
+    if (locationStatus.value == PermissionStatus.denied.value || locationStatus.value == PermissionStatus.unknown.value) {
       permissions.add(PermissionItem(PermissionItemType.Position,
           title: "定位信息", subtitle: "用于获取商品在当前位置可购买库存"));
     }
     PermissionStatus deviceStatus = await PermissionHandler()
         .checkPermissionStatus(PermissionGroup.storage);
-    if (deviceStatus.value == PermissionStatus.denied.value) {
+    if (deviceStatus.value == PermissionStatus.denied.value || locationStatus.value == PermissionStatus.unknown.value) {
       permissions.add(PermissionItem(PermissionItemType.Storage,
           title: '存储空间', subtitle: "用于缓存商品图片等信息"));
     }
 
     if (permissions.length > 0) {
-      showDialog(context: context,child: PermissionDialog());
+      await showDialog(context: context,builder:(context)=> PermissionDialog(items:permissions));
     }
   }
 
@@ -56,7 +56,7 @@ class SplashPageState extends State<SplashPage> {
     if (!isStartHomePage) {
       //跳转主页 且销毁当前页面
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => MainPage()),
+          MaterialPageRoute(builder: (context) => AppPage()),
           (Route<dynamic> rout) => false);
       isStartHomePage = true;
     }

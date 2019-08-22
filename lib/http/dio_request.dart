@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'dart:io';
 import 'error.dart';
-import '../utils/system_info.dart';
+import '../utils/system.dart';
 import '../config/http_config.dart' as config;
 import '../config/token_config.dart' as tokenConfig;
 
@@ -100,7 +100,7 @@ class HttpGo {
 
   ///获取授权token
   static getToken() async {
-    return await SystemInfo.getItem(tokenConfig.TokenConfig.AccessTokenKey);
+    return await SystemUtils.getCacheItem(tokenConfig.TokenConfig.AccessTokenKey);
   }
 
   /// 对请求返回的数据进行统一的处理
